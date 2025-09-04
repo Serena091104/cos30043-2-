@@ -144,7 +144,7 @@ async function logout() {
     </div>
 
     <!-- Footer -->
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
