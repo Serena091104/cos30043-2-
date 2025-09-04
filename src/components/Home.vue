@@ -2,7 +2,7 @@
   <div class="home">
     <!-- Hero Section -->
     <div class="jumbotron p-4 bg-light rounded mt-3">
-      Welcome, {{ loggedInUser?.username || 'Guest' }}! We hope to have a lovely experience with us.
+      Welcome, {{ loggedInUser?.username || 'Guest' }}! We hope you have a lovely experience with us.
       <p class="lead">
         Welcome to our website. Here you can find beauty products and add them to your shopping cart. Enjoy your shopping!
       </p>
@@ -11,7 +11,12 @@
 
     <!-- Search and Filter -->
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search for products..." v-model="searchQuery" />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search for products..."
+        v-model="searchQuery"
+      />
       <select class="form-select" v-model="selectedCategory">
         <option value="">All Categories</option>
         <option v-for="cat in uniqueCategories" :key="cat" :value="cat">{{ cat }}</option>
@@ -22,21 +27,45 @@
     <div class="row mt-5">
       <div class="col-12">
         <h2>Our Products</h2>
-        <!-- Product Cards -->
         <div class="row">
-          <div class="col-12 col-md-6 col-lg-4 mb-4" v-for="product in paginatedProducts" :key="product.id || product.name">
+          <div
+            class="col-12 col-md-6 col-lg-4 mb-4"
+            v-for="product in paginatedProducts"
+            :key="product.id"
+          >
             <div class="card h-100 product-card">
-              <img :src="product.image" class="card-img-top" :alt="product.title || product.name" />
+              <img
+                :src="product.image"
+                class="card-img-top"
+                :alt="product.title"
+              />
               <div class="card-body">
-                <h5 class="card-title">{{ product.title || product.name }}</h5>
+                <h5 class="card-title">{{ product.title }}</h5>
                 <p class="card-text text-truncate">
-                  {{ product.description.length > 100 ? product.description.slice(0, 100) + '...' : product.description }}
+                  {{ product.description.length > 100
+                    ? product.description.slice(0, 100) + '...'
+                    : product.description }}
                 </p>
-                <p class="card-text"><strong>${{ parseFloat(product.price).toFixed(2) }}</strong></p>
+                <p class="card-text">
+                  <strong>${{ parseFloat(product.price).toFixed(2) }}</strong>
+                </p>
+                <p class="text-muted mb-1">
+                  Likes: {{ likes[product.id] || 0 }}
+                </p>
 
                 <div v-if="loggedInUser">
-                  <button class="btn btn-outline-primary me-2" @click="likeProduct(product)">Like</button>
-                  <button class="btn btn-outline-info mt-2" @click="buyNow(product)">Buy Now</button>
+                  <button
+                    class="btn btn-outline-primary me-2"
+                    @click="likeProduct(product)"
+                  >
+                    Like
+                  </button>
+                  <button
+                    class="btn btn-outline-info mt-2"
+                    @click="buyNow(product)"
+                  >
+                    Buy Now
+                  </button>
                 </div>
               </div>
             </div>
@@ -58,9 +87,10 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import Pagination from '../components/Pagination.vue';
-import productsData from '../data/product.json'; // Import the JSON data
+import productsData from '../data/product.json'; // Local JSON file
 
-const loggedInUser = ref(null); // Replace with actual user logic
+// State
+const loggedInUser = ref({ username: 'Serena' }); // Fake logged in user for demo
 const products = ref([]);
 const searchQuery = ref('');
 const selectedCategory = ref('');
@@ -68,48 +98,47 @@ const currentPage = ref(1);
 const perPage = ref(6);
 const likes = ref({});
 
-// Load products on mount
+// Load products
 onMounted(() => {
-  // Wrap JSON format to match existing code expectations
   products.value = productsData.map((prod, index) => ({
     id: prod.id || index,
     title: prod.name,
-    ...prod
+    ...prod,
   }));
 });
 
-// Computed filters & pagination
-const filteredProducts = computed(() => {
-  return products.value.filter(product => {
+// Computed properties
+const filteredProducts = computed(() =>
+  products.value.filter(product => {
     const matchesSearch =
       product.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.value.toLowerCase());
     const matchesCategory =
       !selectedCategory.value || product.category === selectedCategory.value;
     return matchesSearch && matchesCategory;
-  });
-});
+  })
+);
 
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * perPage.value;
-  const end = start + perPage.value;
-  return filteredProducts.value.slice(start, end);
+  return filteredProducts.value.slice(start, start + perPage.value);
 });
 
 const uniqueCategories = computed(() => {
-  return [
-    ...new Set(products.value.map(p => p.category).filter(Boolean))
-  ];
+  return [...new Set(products.value.map(p => p.category).filter(Boolean))];
 });
 
-// Handlers
+// Methods
 function likeProduct(product) {
-  if (!loggedInUser.value) return alert('Please log in to like products.');
+  if (!loggedInUser.value) {
+    alert('Please log in to like products.');
+    return;
+  }
   likes.value[product.id] = (likes.value[product.id] || 0) + 1;
 }
 
 function buyNow(product) {
-  alert(`Successfully purchased ${product.title}! Thank you for your purchase.`);
+  alert(`Successfully purchased ${product.title}!\nThank you for your purchase!`);
 }
 
 function handlePageChange(newPage) {
