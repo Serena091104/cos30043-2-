@@ -11,6 +11,10 @@ header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: https://serena091104.github.io");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec425e8aac7f76d4d0cc0859e360271d08a1e3ad
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
@@ -96,4 +100,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     echo json_encode(["error" => "Invalid request method"]);
     $conn->close();
     exit();
+<<<<<<< HEAD
     ?>
+=======
+}
+
+echo json_encode(["error" => "Invalid request method"]);
+$conn->close();
+exit();
+?>
+>>>>>>> ec425e8aac7f76d4d0cc0859e360271d08a1e3ad

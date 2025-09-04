@@ -1,14 +1,20 @@
 <?php
 ini_set('display_errors', 1);
 session_start();
+<<<<<<< HEAD
 
+=======
+>>>>>>> ec425e8aac7f76d4d0cc0859e360271d08a1e3ad
 header("Access-Control-Allow-Origin: https://serena091104.github.io");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ec425e8aac7f76d4d0cc0859e360271d08a1e3ad
 // Database connection
 //$conn = new mysqli("feenix-mariadb.swin.edu.au", "s104480538", "091104", "s104480538_db");
 $conn = new mysqli("sql100.infinityfree.com", "if0_39837779", "BxvuQ4NiRmfL", "if0_39837779_s104480538_db");

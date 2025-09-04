@@ -12,7 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204); // No content
     exit();
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ec425e8aac7f76d4d0cc0859e360271d08a1e3ad
 // Connect to the database
 //$conn = new mysqli("feenix-mariadb.swin.edu.au", "s104480538", "091104", "s104480538_db");
 $conn = new mysqli("sql100.infinityfree.com", "if0_39837779", "0919BxvuQ4NiRmfL321332", "if0_39837779_s104480538_db");
