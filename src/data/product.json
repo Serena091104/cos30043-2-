@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Clinique Redness Solutions Makeup SPF 15",
+    "image": "https://www.clinique.com.au/media/export/cms/products/402x464/clq_70JW_402x464.png",
+    "price": 40.00,
+    "brand": "clinique",
+    "shade": "Calming Honey",
+    "category": "foundation"
+  },
+  {
+    "name": "Clinique Stay-Matte Oil-Free Makeup",
+    "image": "https://canadianbeauty.com/wp-content/uploads/2012/05/Stay-Matte-Oil-Free-Makeup-FINAL.jpg",
+    "price": 26.00,
+    "description": "Long-wearing matte foundation for oily skin types.",
+    "brand": "clinique",
+    "shade": "CN 08 Linen",
+    "category": "foundation"
+  },
+  {
+    "name": "ColourPop Lippie Pencil",
+    "image": "https://colourpop.com/cdn/shop/files/Top-Down-Lippie-Pencil-with-Cap.jpg?v=1689727385",
+    "price": 5.00,
+    "description": "A creamy pencil that glides on smoothly and lasts all day.",
+    "brand": "colourpop",
+    "shade": "Dusty roses",
+    "category": "lip_liner"
+  },
+  {
+    "name": "ColourPop Blotted Lip",
+    "image": "https://colourpop.com/cdn/shop/files/5-18-23-Ultra-Lip-Upgrade-Web-Assets-Infographic-Blotted_7cf4dbf1-b582-4cf4-b09d-cfc5a28578d0.jpg?v=1687292076",
+    "price": 5.50,
+    "description": "Lightweight lipstick with a soft, diffused matte finish.",
+    "brand": "colourpop",
+    "shade": "pink",
+    "category": "lipstick"
+  },
+  {
+    "name": "Clinique Advanced Concealer",
+    "image": "https://dy6g3i6a1660s.cloudfront.net/kosCiYH2Qlf4vtOtV3IqYQHCAcI/p_550x550-30/clinique-advanced-concealer-matte-light-.jpg",
+    "price": 20.00,
+    "description": "Full coverage concealer that stays put for hours.",
+    "brand": "clinique",
+    "shade": "Light neutral",
+    "category": "concealer"
+  },
+  {
+    "name": "Maybelline Face Studio Master Hi-Light Bronzer",
+    "image": "https://myfindsonline.com/wp-content/uploads/2015/05/facestudio-bronzer.jpg",
+    "price": 14.99,
+    "description": "Multi-tonal bronzer for a radiant sun-kissed look.",
+    "brand": "maybelline",
+    "shade": "Light brown",
+    "category": "bronzer"
+  },
+  {
+    "name": "Maybelline Face Studio Master Hi-Light Blush",
+    "image": "https://i5.walmartimages.com/seo/Maybelline-Face-Studio-Master-Hi-Light-Blush-Coral_68afde5e-c12b-41cc-809b-b4256d6d35b0.77e806792e236c0aabc67afe4f4fa587.jpeg",
+    "price": 9.50,
+    "description": "Volumizing mascara that delivers a wide-eyed doll lash look.",
+    "brand": "maybelline",
+    "shade": null,
+    "category": "mascara"
+  },
+  {
+    "name": "Benefit Hoola Matte Bronzer",
+    "image": "https://cdn.nicehair.dk/products/75572/benefit-hoola-matte-powder-bronzer-8-gr-1.jpg",
+    "price": 29.00,
+    "description": "Award-winning matte bronzer for a natural sun-kissed glow.",
+    "brand": "benefit",
+    "shade": "light",
+    "category": "bronzer"
+  },
+  {
+    "name": "Smashbox Photo Finish Foundation Primer",
+    "image": "https://images.matas.dk/Assets_v3/300001-400000/371001-372000/371401-371500/371458/product_v1_x4.jpg",
+    "price": 36.00,
+    "description": "Silky primer that blurs imperfections and smooths skin.",
+    "brand": "smashbox",
+    "shade": "white",
+    "category": "primer"
+  },
+  {
+    "name": "CoverGirl LashBlast Volume Mascara",
+    "image": "https://media1.popsugar-assets.com/files/thumbor/uJ-bknbuCZvb8A0vrloaSK_earg/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2017/12/14/972/n/1922153/3b95ee065a32f9274d7495.40151005_covergirl/i/CoverGirl-LashBlast-Volume-Waterproof-Mascara.jpg",
+    "price": 8.99,
+    "description": "Mega-volume mascara for bold, full lashes.",
+    "brand": "covergirl",
+    "shade": "orange",
+    "category": "mascara"
+  },
+  {
+    "name": "Dior Diorskin Forever Undercover Foundation",
+    "image": "https://i5.walmartimages.com/asr/c33b77a6-3010-4c60-bc01-30b86feee8e8.a1cfee8a0cb4b6e6f58b424da04c1666.jpeg",
+    "price": 52.00,
+    "description": "Full coverage foundation with a lightweight matte finish.",
+    "brand": "dior",
+    "shade": "pink",
+    "category": "foundation"
+  },
+  {
+    "name": "NYX Butter Gloss",
+    "image": "https://www.clinique.com/media/export/cms/products/600x750/cl_sku_749K04_600x750_0.png",
+    "price": 5.00,
+    "description": "Buttery soft gloss that delivers sheer to medium coverage.",
+    "brand": "nyx",
+    "shade": "light pink",
+    "category": "lip_gloss"
+  },
+  {
+    "name": "Clinique Chubby Stick Lip Balm",
+    "image": "https://media1.popsugar-assets.com/files/thumbor/gpu8FKxPkivk4zBeBl2Mam8SaaM/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2019/04/09/731/n/1922153/32c379418ea5f78f_netimgFYizuJ/i/Clinique-Chubby-Stick-Moisturizing-Lip-Colour-Balm.jpg",
+    "price": 17.00,
+    "description": "Moisturizing lip balm with a sheer hint of color.",
+    "brand": "clinique",
+    "shade": "orange",
+    "category": "lip_balm"
+  },
+  {
+    "name": "Benefit They are Real! Mascara",
+    "image": "https://media.ulta.com/i/ulta/2231443?w=720&fmt=png",
+    "price": 25.00,
+    "description": "Lengthens, curls, volumizes and lifts lashes.",
+    "brand": "benefit",
+    "shade": "grey",
+    "category": "mascara"
+  },
+  {
+    "name": "Smashbox Always On Liquid Lipstick",
+    "image": "https://media.ulta.com/i/ulta/2306282?w=720&fmt=png",
+    "price": 24.00,
+    "description": "Weightless matte liquid lipstick that stays put for 8 hours.",
+    "brand": "smashbox",
+    "shade": "rossie",
+    "category": "lipstick"
+  },
+  {
+    "name": "CoverGirl Clean Matte BB Cream",
+    "image": "https://owp.klarna.com/product/1200x630/3004646167/CoverGirl-Clean-Matte-BB-Cream-Fair.jpg",
+    "price": 8.49,
+    "description": "Oil-free BB cream for a fresh, natural look.",
+    "brand": "covergirl",
+    "shade": "light",
+    "category": "bb_cream"
+  },
+  {
+    "name": "Dior Addict Lip Glow",
+    "image": "https://www.1-minute-reads.com/wp-content/uploads/2020/11/dior-addict-lip-glow-large.png",
+    "price": 34.00,
+    "description": "Color reviving lip balm that enhances your natural lip tone.",
+    "brand": "dior",
+    "shade": "pink",
+    "category": "lip_balm"
+  },
+  {
+    "name": "NYX Micro Brow Pencil",
+    "image": "https://titounebeautystyle.com/wp-content/uploads/2017/08/micro_brow_pencil_nyx_espresso.jpg",
+    "price": 10.00,
+    "description": "Precise brow pencil for natural-looking definition.",
+    "brand": "nyx",
+    "shade": "brown",
+    "category": "eyebrow"
+  },
+  {
+    "name": "Clinique Even Better Makeup SPF 15",
+    "image": "https://www.raincouverbeauty.com/wp-content/uploads/2019/04/Clinique-Even-Better-WN-04-Bone-Review-963x1024.jpg",
+    "price": 29.00,
+    "description": "Foundation that evens skin tone and improves clarity.",
+    "brand": "clinique",
+    "shade": "light",
+    "category": "foundation"
+  }
+]
