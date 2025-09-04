@@ -134,7 +134,8 @@ export default {
   methods: {
     async fetchSession() {
       try {
-        const response = await fetch('/cos30043/s104480538/project/resource/api_user.php');
+        //const response = await fetch('/cos30043/s104480538/project/resource/api_user.php');
+        const response = await fetch('https://myproject1.infinityfreeapp.com/resource/api_user.php');
         const data = await response.json();
         if (data.logged_in) {
           this.loggedInUser = { user_id: data.user_id, username: data.username };
@@ -151,8 +152,9 @@ export default {
         return;
       }
       try {
-        const response = await fetch(`/cos30043/s104480538/project/resource/api_like.php`, {
-          method: 'POST',
+        //const response = await fetch(`/cos30043/s104480538/project/resource/api_like.php`, {
+      const response = await fetch(`https://myproject1.infinityfreeapp.com/resource/api_like.php`, {
+        method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({ product_id: productId }),
         });
@@ -245,7 +247,8 @@ export default {
     },
     async logout() {
       try {
-        const response = await fetch('/cos30043/s104480538/project/resource/api_user.php', {
+        //const response = await fetch('/cos30043/s104480538/project/resource/api_user.php', {
+        const response = await fetch('https://myproject1.infinityfreeapp.com/resource/api_user.php', {
           method: 'DELETE'
         });
         const data = await response.json();
@@ -259,8 +262,11 @@ export default {
     },
     async fetchProducts() {
       try {
-        const response = await fetch("/cos30043/s104480538/project/resource/api2.php");
-        const data = await response.json();
+        //const response = await fetch("/cos30043/s104480538/project/resource/api2.php");
+         //const data = await response.json();
+        const res = await fetch("https://myproject1.infinityfreeapp.com/resource/api2.php");
+        const data = await res.json();
+       
         this.products = data.map(product => ({
           ...product,
           price: typeof product.price === 'number' ? product.price : parseFloat(product.price) || 0
@@ -268,7 +274,8 @@ export default {
 
         // Fetch initial likes count for each product
         for (const product of this.products) {
-          const likesResponse = await fetch(`/cos30043/s104480538/project/resource/api_like.php?product_id=${product.id}`);
+          //const likesResponse = await fetch(`/cos30043/s104480538/project/resource/api_like.php?product_id=${product.id}`);
+          const likesResponse = await fetch(`https://myproject1.infinityfreeapp.com/resource/api_like.php?product_id=${product.id}`);
           const likesData = await likesResponse.json();
           if (likesData && likesData.status === 'success') {
             this.likes[product.id] = likesData.likes_count || 0;          }

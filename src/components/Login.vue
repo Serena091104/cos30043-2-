@@ -57,7 +57,8 @@ async function handleLogin() {
   success.value = '';
 
   try {
-    const response = await fetch('/cos30043/s104480538/project/resource/api_user.php', {
+    //const response = await fetch('/cos30043/s104480538/project/resource/api_user.php', {
+    const response = await fetch('https://myproject1.infinityfreeapp.com/resource/api_user.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

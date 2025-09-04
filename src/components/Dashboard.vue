@@ -109,7 +109,8 @@ const deleteId = ref(null)
 // Fetch products from the backend
 const fetchProducts = async () => {
   try {
-    const response = await fetch('/cos30043/s104480538/project/resource/apis.php')
+    //const response = await fetch('/cos30043/s104480538/project/resource/apis.php')
+    const response = await fetch('https://myproject1.infinityfreeapp.com/resource/apis.php') 
     if (!response.ok) throw new Error(`Failed to fetch products: ${response.statusText}`)
     const data = await response.json()
     products.value = data
@@ -121,7 +122,8 @@ const fetchProducts = async () => {
 // Insert a new product
 const insertProduct = async () => {
   try {
-    const response = await fetch('/cos30043/s104480538/project/resource/apis.php', {
+    //const response = await fetch('/cos30043/s104480538/project/resource/apis.php', {
+    const response = await fetch('https://myproject1.infinityfreeapp.com/resource/apis.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -153,7 +155,8 @@ const insertProduct = async () => {
 const fetchProductDetails = async () => {
   if (!updateData.id) return; // Do nothing if ID is not provided
   try {
-    const response = await fetch(`/cos30043/s104480538/project/resource/apis.php?id=${updateData.id}`);
+    //const response = await fetch(`/cos30043/s104480538/project/resource/apis.php?id=${updateData.id}`);
+      const response = await fetch(`https://myproject1.infinityfreeapp.com/resource/apis.php?id=${updateData.id}`);
     if (!response.ok) throw new Error(`Failed to fetch product: ${response.statusText}`);
     const data = await response.json();
     if (data.length > 0) {
@@ -177,7 +180,8 @@ const fetchProductDetails = async () => {
 // Update an existing product
 const updateProduct = async () => {
   try {
-    const response = await fetch(`/cos30043/s104480538/project/resource/apis.php`, {
+    //const response = await fetch(`/cos30043/s104480538/project/resource/apis.php`, {
+    const response = await fetch(`https://myproject1.infinityfreeapp.com/resource/apis.php`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -209,7 +213,8 @@ const updateProduct = async () => {
 // Delete a product
 const deleteProduct = async () => {
   try {
-    const response = await fetch(`/cos30043/s104480538/project/resource/apis.php`, {
+    //const response = await fetch(`/cos30043/s104480538/project/resource/apis.php`, {
+    const response = await fetch(`https://myproject1.infinityfreeapp.com/resource/apis.php`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

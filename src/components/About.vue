@@ -113,7 +113,9 @@ export default {
   },
   methods: {
     getImageUrl(name) {
-  return `/cos30043/s104480538/project/image/${name}.jpg`; // Use absolute path for images in the public folder
+  //return `/cos30043/s104480538/project/image/${name}.jpg`; // Use absolute path for images in the public folder
+  return `/image/${name}.jpg`;
+
 }
 }
 }

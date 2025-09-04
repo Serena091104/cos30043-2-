@@ -1,9 +1,17 @@
 <?php
 // Database connection parameters
-$servername = "feenix-mariadb.swin.edu.au";
-$username = "s104480538";
-$password = "091104";
-$dbname = "s104480538_db";
+//$servername = "feenix-mariadb.swin.edu.au";
+//$username = "s104480538";
+//$password = "091104";
+//$dbname = "s104480538_db";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$servername = "sql100.infinityfree.com";
+$username = "if0_39837779";
+$password = "BxvuQ4NiRmfL";
+$dbname = "if0_39837779_s104480538_db";
 
 // Fetch products from the external API
 $apiUrl = "https://fakestoreapi.in/api/products?limit=20";

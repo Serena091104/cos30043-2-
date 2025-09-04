@@ -4,7 +4,7 @@
       <!-- Left side image -->
       <div class="col-md-6 d-none d-md-block p-0">
         <img
-          src="/public/image/shopping4.jpg"
+          src="/image/shopping4.jpg"
           alt="Signup visual"
           class="img-fluid h-100 w-100 object-fit-cover"
           style="object-fit: cover;"
@@ -190,7 +190,9 @@ async function handleSignup() {
   })
 
   try {
-    const response = await fetch('/cos30043/s104480538/project/resource/signup.php', {
+    //const response = await fetch('/cos30043/s104480538/project/resource/signup.php', {
+    const response = await fetch('/https://myproject1.infinityfreeapp.com/resource/signup.php', {
+  
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'

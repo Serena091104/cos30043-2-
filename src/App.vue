@@ -10,7 +10,7 @@ const loggedInUser = ref<{ username: string; user_id: number } | null>(null);
 // Check session on mount
 onMounted(async () => {
   try {
-    const res = await fetch('/api_user.php', { method: 'GET' });
+    const res = await fetch('https://myproject1.infinityfreeapp.com/resource/api_user.php', { method: 'GET' });
     const data = await res.json();
     if (data.logged_in) {
       loggedInUser.value = {
@@ -31,7 +31,7 @@ async function handleSearch() {
   }
 
   try {
-    const res = await fetch(`/api_products.php?search=${encodeURIComponent(searchQuery.value)}`, { method: 'GET' });
+    const res = await fetch(`https://myproject1.infinityfreeapp.com/resource/api_user.php'/api_products.php?search=${encodeURIComponent(searchQuery.value)}`, { method: 'GET' });
     const data = await res.json();
     if (data.status === 'success') {
       console.log('Search results:', data.products);
@@ -48,7 +48,8 @@ async function handleSearch() {
 
 // Logout
 async function logout() {
-  await fetch('/logout.php', { method: 'POST' });
+  //await fetch('/logout.php', { method: 'POST' });
+  await fetch('https://myproject1.infinityfreeapp.com/resource/logout.php', { method: 'POST' });
   loggedInUser.value = null;
   router.push('/');
 }

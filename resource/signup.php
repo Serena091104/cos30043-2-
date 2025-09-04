@@ -1,19 +1,37 @@
 <?php
+New Chat
+4 lines
+
+header('Access-Control-Allow-Origin: https://yourgithubusername.github.io');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 header('Content-Type: application/json');
-//header('Access-Control-Allow-Origin: *');
-//header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
-//header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Origin: https://serena091104.github.io');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Origin: *');
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
 // Database connection
-$host = 'feenix-mariadb.swin.edu.au';
-$user = 's104480538';
-$pass = '091104';
-$db   = 's104480538_db';
+//$host = 'feenix-mariadb.swin.edu.au';
+//$user = 's104480538';
+//$pass = '091104';
+//$db   = 's104480538_db';
+
+$host = "sql100.infinityfree.com";
+$user = "if0_39837779";
+$pass = "BxvuQ4NiRmfL";
+$db = "if0_39837779_s104480538_db";
+
 
 $conn = new mysqli($host, $user, $pass, $db);
 
