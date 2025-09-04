@@ -15,13 +15,6 @@ const errors = ref({})
 
 const router = useRouter()
 
-// Railway CORS proxy base URL
-const proxyBase = "https://cors-proxy-production-99.up.railway.app"
-const targetBaseURL = "https://myproject1.infinityfreeapp.com/resource/signup.php"
-
-function proxyURL(url) {
-  return `${proxyBase}?url=${encodeURIComponent(url)}`
-}
 
 // Validate password & confirm password
 watch(password, (newVal) => {
