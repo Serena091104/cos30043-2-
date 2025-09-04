@@ -25,11 +25,12 @@
           </div>
           <button type="submit" class="btn btn-primary w-100" style="background-color: #e83e8c;">Login</button>
         </form>
-          <!-- Link to Signup Page -->
-          <p class="mt-3 text-center">
-           Don't have an account? 
+
+        <!-- Link to Signup Page -->
+        <p class="mt-3 text-center">
+          Don't have an account?
           <router-link to="/signup" class="text-decoration-none" style="color: #e83e8c;">Sign up here</router-link>
-</p>
+        </p>
 
         <!-- Error or Success Message -->
         <div v-if="error" class="alert alert-danger mt-3 w-100 text-center">{{ error }}</div>
@@ -43,30 +44,30 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-// Define state variables
 const router = useRouter();
 const username = ref('');
 const password = ref('');
 const error = ref('');
 const success = ref('');
-const loggedInUser = ref(null); // Replace this with inject('user') if using global user context
+const loggedInUser = ref(null);
 
-// Handle login
+const proxyBase = "https://cors-proxy-production-99.up.railway.app";
+const targetURL = "https://myproject1.infinityfreeapp.com/resource/api_user.php";
+
 async function handleLogin() {
   error.value = '';
   success.value = '';
 
   try {
-    //const response = await fetch('/cos30043/s104480538/project/resource/api_user.php', {
-    const response = await fetch('https://myproject1.infinityfreeapp.com/resource/api_user.php', {
+    const response = await fetch(`${proxyBase}?url=${encodeURIComponent(targetURL)}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         username: username.value,
-        password: password.value
-      })
+        password: password.value,
+      }),
     });
 
     const result = await response.json();
@@ -75,8 +76,8 @@ async function handleLogin() {
       error.value = result.error;
     } else if (result.success) {
       success.value = result.message || 'Login successful!';
-      loggedInUser.value = { username: username.value }; // Store user locally
-      router.push('/'); // Go to homepage after login
+      loggedInUser.value = { username: username.value };
+      router.push('/');
     } else {
       error.value = 'Unexpected response from server.';
     }
