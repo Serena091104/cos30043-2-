@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="home container mt-4">
     <!-- Hero Section -->
-    <div class="jumbotron p-4 bg-light rounded mt-3">
+    <div class="jumbotron p-4 bg-light rounded mb-4 text-center">
       Welcome, {{ loggedInUser?.username || 'Guest' }}! We hope you have a lovely experience with us.
       <p class="lead">
         Welcome to our website. Here you can find beauty products and add them to your shopping cart. Enjoy your shopping!
@@ -9,27 +9,48 @@
       <button v-if="loggedInUser" class="btn btn-danger" @click="logout">Logout</button>
     </div>
 
-    <!-- Search and Filter -->
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Search for products..."
-        v-model="searchQuery"
-      />
-      <select class="form-select" v-model="selectedCategory">
-        <option value="">All Categories</option>
-        <option v-for="cat in uniqueCategories" :key="cat" :value="cat">{{ cat }}</option>
-      </select>
-    </div>
+    <div class="row">
+      <!-- Sidebar Category Filter -->
+      <aside class="col-md-3 mb-4">
+        <h5>Categories</h5>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            :class="{ active: selectedCategory === '' }"
+            @click="selectedCategory = ''"
+            style="cursor: pointer;"
+          >
+            All Categories
+          </li>
+          <li
+            v-for="cat in uniqueCategories"
+            :key="cat"
+            class="list-group-item"
+            :class="{ active: selectedCategory === cat }"
+            @click="selectedCategory = cat"
+            style="cursor: pointer;"
+          >
+            {{ cat }}
+          </li>
+        </ul>
+      </aside>
 
-    <!-- Products Section -->
-    <div class="row mt-5">
-      <div class="col-12">
+      <!-- Products Section -->
+      <section class="col-md-9">
+        <!-- Search input above products -->
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for products..."
+            v-model="searchQuery"
+          />
+        </div>
+
         <h2>Our Products</h2>
         <div class="row">
           <div
-            class="col-12 col-md-6 col-lg-4 mb-4"
+            class="col-12 col-sm-6 col-lg-4 mb-4"
             v-for="product in paginatedProducts"
             :key="product.id"
           >
@@ -39,21 +60,19 @@
                 class="card-img-top"
                 :alt="product.title"
               />
-              <div class="card-body">
+              <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ product.title }}</h5>
-                <p class="card-text text-truncate">
+                <p class="card-text text-truncate mb-2">
                   {{ product.description.length > 100
                     ? product.description.slice(0, 100) + '...'
                     : product.description }}
                 </p>
-                <p class="card-text">
+                <p class="card-text mb-1">
                   <strong>${{ parseFloat(product.price).toFixed(2) }}</strong>
                 </p>
-                <p class="text-muted mb-1">
-                  Likes: {{ likes[product.id] || 0 }}
-                </p>
+                <p class="text-muted mb-3">Likes: {{ likes[product.id] || 0 }}</p>
 
-                <div v-if="loggedInUser">
+                <div v-if="loggedInUser" class="mt-auto">
                   <button
                     class="btn btn-outline-primary me-2"
                     @click="likeProduct(product)"
@@ -79,7 +98,7 @@
           :current-page="currentPage"
           @pageChanged="handlePageChange"
         />
-      </div>
+      </section>
     </div>
   </div>
 </template>
@@ -89,8 +108,7 @@ import { ref, computed, onMounted } from 'vue';
 import Pagination from '../components/Pagination.vue';
 import productsData from '../data/product.json'; // Local JSON file
 
-// State
-const loggedInUser = ref({ username: 'Serena' }); // Fake logged in user for demo
+const loggedInUser = ref({ username: 'Serena' }); // Demo user
 const products = ref([]);
 const searchQuery = ref('');
 const selectedCategory = ref('');
@@ -98,7 +116,6 @@ const currentPage = ref(1);
 const perPage = ref(6);
 const likes = ref({});
 
-// Load products
 onMounted(() => {
   products.value = productsData.map((prod, index) => ({
     id: prod.id || index,
@@ -107,17 +124,16 @@ onMounted(() => {
   }));
 });
 
-// Computed properties
-const filteredProducts = computed(() =>
-  products.value.filter(product => {
+const filteredProducts = computed(() => {
+  return products.value.filter(product => {
     const matchesSearch =
       product.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.value.toLowerCase());
     const matchesCategory =
       !selectedCategory.value || product.category === selectedCategory.value;
     return matchesSearch && matchesCategory;
-  })
-);
+  });
+});
 
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * perPage.value;
@@ -128,7 +144,6 @@ const uniqueCategories = computed(() => {
   return [...new Set(products.value.map(p => p.category).filter(Boolean))];
 });
 
-// Methods
 function likeProduct(product) {
   if (!loggedInUser.value) {
     alert('Please log in to like products.');
@@ -155,7 +170,6 @@ function logout() {
   background: linear-gradient(to right, #ffe3ec, #fceabb);
   padding: 2.5rem;
   border-radius: 1rem;
-  text-align: center;
   color: #333;
   box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.1);
 }
@@ -167,9 +181,19 @@ function logout() {
 }
 .product-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 .product-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.list-group-item {
+  cursor: pointer;
+}
+.list-group-item.active {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
 }
 </style>
