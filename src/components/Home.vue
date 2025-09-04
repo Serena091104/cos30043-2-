@@ -58,7 +58,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import Pagination from '../components/Pagination.vue';
-import productsData from '../data/products.json'; // Import the JSON data
+import productsData from '../data/product.json'; // Import the JSON data
 
 const loggedInUser = ref(null); // Replace with actual user logic
 const products = ref([]);
