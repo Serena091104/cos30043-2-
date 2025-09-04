@@ -1,276 +1,132 @@
 <template>
-  <div id="dashboard" class="container mt-5">
-    <div class="card shadow">
-      <div class="card-header text-center" style="background: linear-gradient(to right, #ffe3ec, #fceabb); color: #5a2d3a;">
-        <h1 class="font-weight-bold">Dashboard</h1>
+  
+  <div class="about container mt-4">
+  <!--<h1 class="text-center mb-4">About Our Application</h1> -->
+
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4 class="card-title">
+              Welcome {{ user.firstName && user.lastName ? user.firstName + ' ' + user.lastName : '' }}! <!--Can add Guest or any word between '' of lastName: '' '-->
+            </h4>
+            <p class="text-muted">What is your name?</p>
+
+            <!-- Name Inputs -->
+            <div class="mb-2">
+              <label class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="user.firstName"
+                placeholder="Enter first name"
+              >
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="user.lastName"
+                placeholder="Enter last name"
+              >
+            </div>
+
+            <!-- View Choice -->
+            <div class="form-check form-check-inline mt-2">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="viewOption"
+                value="ocean"
+                v-model="user.selectedView"
+              >
+              <label class="form-check-label">Ocean</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="viewOption"
+                value="mountain"
+                v-model="user.selectedView"
+              >
+              <label class="form-check-label">Mountain</label>
+            </div>
+
+            <!-- Display Selected Image -->
+            <div v-if="user.selectedView" class="mt-3">
+              <img :src="getImageUrl(user.selectedView)" class="img-fluid rounded shadow-sm" :alt="user.selectedView">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <!-- Tabs Navigation -->
-        <ul class="nav nav-tabs mb-4" id="dashboardTabs">
-          <li class="nav-item">
-            <button class="nav-link" :class="{ active: tab === 1 }" @click="tab = 1">Insert Product</button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" :class="{ active: tab === 2 }" @click="tab = 2">Update Product</button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" :class="{ active: tab === 3 }" @click="tab = 3">Delete Product</button>
-          </li>
-        </ul>
+    </div>
 
-        <!-- Tabs Content -->
-        <div v-if="tab === 1">
-          <h2>Insert Product</h2>
-          <form @submit.prevent="insertProduct">
-            <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input type="text" id="title" v-model="newProduct.title" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label for="price" class="form-label">Price</label>
-              <input type="number" id="price" v-model="newProduct.price" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea id="description" v-model="newProduct.description" class="form-control" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="category" class="form-label">Category</label>
-              <input type="text" id="category" v-model="newProduct.category" class="form-control" required />
-            </div>
-            <button type="submit" class="btn btn-primary">Insert Product</button>
-          </form>
+    <!-- App Info Section -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h5 class="card-title">Our Mission</h5>
+            <p class="card-text">
+              This web is about the shopping website of a beauty product called "Serena Beauty". It is a simple web application
+              that allows users to explore various beauty products, read news articles, and learn more about the brand.
+            </p>
+            <p>
+              Built for beauty purposes, this application highlights how to gather user input, respond to user choices,
+              and display dynamic content in a clean, mobile-friendly layout.
+            </p>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Update Product Tab -->
-        <div v-if="tab === 2">
-          <h2>Update Product</h2>
-          <form @submit.prevent="updateProduct">
-            <div class="mb-3">
-              <label for="productId" class="form-label">Product ID</label>
-              <input type="number" id="productId" v-model="updateData.id" class="form-control" @blur="fetchProductDetails" required />
-            </div>
-            <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input type="text" id="title" v-model="updateData.title" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label for="price" class="form-label">Price</label>
-              <input type="number" id="price" v-model="updateData.price" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea id="description" v-model="updateData.description" class="form-control" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="category" class="form-label">Category</label>
-              <input type="text" id="category" v-model="updateData.category" class="form-control" required />
-            </div>
-            <button type="submit" class="btn btn-warning">Update Product</button>
-          </form>
-        </div>
-
-        <!-- Delete Product Tab -->
-        <div v-if="tab === 3">
-          <h2>Delete Product</h2>
-          <form @submit.prevent="deleteProduct">
-            <div class="mb-3">
-              <label for="productId" class="form-label">Product ID</label>
-              <input type="number" id="productId" v-model="deleteId" class="form-control" required />
-            </div>
-            <button type="submit" class="btn btn-danger">Delete Product</button>
-          </form>
+    <!-- Contact -->
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h5 class="card-title">Contact Us</h5>
+            <p class="card-text">
+              Have questions or suggestions? Reach out to us at
+              <a href="mailto:serenabeauty@example.com">serenabeauty@gmail.com</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
-
-const tab = ref(1)
-const products = ref([])
-
-const newProduct = ref({
-  title: '',
-  price: 0,
-  description: '',
-  category: ''
-})
-
-const updateData = ref({
-  id: null,
-  title: '',
-  price: null,
-  description: '',
-  category: ''
-})
-
-const deleteId = ref(null)
-
-// Proxy URL setup
-const proxyBase = "https://cors-proxy-production-99.up.railway.app";
-const targetBaseURL = "https://myproject1.infinityfreeapp.com/resource/apis.php";
-
-function proxyURL(target) {
-  return `${proxyBase}?url=${encodeURIComponent(target)}`
-}
-
-// Fetch products from the backend
-const fetchProducts = async () => {
-  try {
-    const response = await fetch(proxyURL(targetBaseURL));
-    if (!response.ok) throw new Error(`Failed to fetch products: ${response.statusText}`);
-    const data = await response.json();
-    products.value = data;
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  }
-}
-
-// Insert a new product
-const insertProduct = async () => {
-  try {
-    const response = await fetch(proxyURL(targetBaseURL), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newProduct.value)
-    });
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Error inserting product:', errorText);
-      return;
+<script>
+export default {
+  name: 'AboutPage',
+  data() {
+    return {
+      user: {
+        firstName: '',
+        lastName: '',
+        selectedView: ''
+      }
     }
-    const result = await response.text();
-    console.log('Inserted Product ID:', result);
-    fetchProducts();
-    newProduct.value = { title: '', price: 0, description: '', category: '' };
-  } catch (error) {
-    console.error('Error inserting product:', error);
-  }
+  },
+  methods: {
+    getImageUrl(name) {
+  return `/cos30043/s104480538/project/image/${name}.jpg`; // Use absolute path for images in the public folder
 }
-
-// Fetch product details for updating
-const fetchProductDetails = async () => {
-  if (!updateData.value.id) return;
-  try {
-    const response = await fetch(proxyURL(`${targetBaseURL}?id=${updateData.value.id}`));
-    if (!response.ok) throw new Error(`Failed to fetch product: ${response.statusText}`);
-    const data = await response.json();
-    if (data.length > 0) {
-      const product = data[0];
-      updateData.value = {
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        description: product.description,
-        category: product.category
-      };
-    } else {
-      console.error('Product not found');
-      resetUpdateData();
-    }
-  } catch (error) {
-    console.error('Error fetching product details:', error);
-  }
 }
-
-// Update an existing product
-const updateProduct = async () => {
-  try {
-    const response = await fetch(proxyURL(targetBaseURL), {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updateData.value)
-    });
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Error updating product:', errorText);
-      return;
-    }
-    const result = await response.text();
-    console.log('Affected Rows:', result);
-    fetchProducts();
-    resetUpdateData();
-  } catch (error) {
-    console.error('Error updating product:', error);
-  }
 }
-
-// Delete a product
-const deleteProduct = async () => {
-  try {
-    const response = await fetch(proxyURL(targetBaseURL), {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: deleteId.value })
-    });
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Error deleting product:', errorText);
-      return;
-    }
-    const result = await response.text();
-    console.log('Deleted Rows:', result);
-    fetchProducts();
-    deleteId.value = null;
-  } catch (error) {
-    console.error('Error deleting product:', error);
-  }
-}
-
-// Helper to reset update form
-const resetUpdateData = () => {
-  updateData.value = {
-    id: null,
-    title: '',
-    price: null,
-    description: '',
-    category: ''
-  }
-}
-
-// Fetch products on mount
-onMounted(() => {
-  fetchProducts();
-})
 </script>
 
 <style scoped>
-.container {
-  max-width: 900px;
+.card img {
+  max-height: 250px;
+  object-fit: cover;
 }
-.card-header {
-  font-size: 1.5rem;
-}
-.nav-tabs .nav-link {
-  cursor: pointer;
-  color: #5a2d3a; /* Deep pink for text */
-}
-.nav-tabs .nav-link.active {
-  background-color: #ffe3ec; /* Light pink for active tab */
-  color: #5a2d3a; /* Deep pink for active tab text */
-}
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #fff0f5; /* Light pink for table rows */
-}
-.table-striped tbody tr:hover {
-  background-color: #ffe3ec; /* Slightly darker pink on hover */
-}
-.btn-primary {
-  background-color: #ff6b81; /* Soft pink for buttons */
-  border: none;
-}
-.btn-primary:hover {
-  background-color: #ff4d6d; /* Darker pink on hover */
-}
-.btn-warning {
-  background-color: #ffc107; /* Yellow for warning buttons */
-  border: none;
-}
-.btn-danger {
-  background-color: #dc3545; /* Red for danger buttons */
-  border: none;
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+  }
 }
 </style>
