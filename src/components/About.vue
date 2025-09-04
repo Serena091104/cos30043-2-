@@ -113,7 +113,7 @@ export default {
   },
   methods: {
     getImageUrl(name) {
-  return `./image/${name}.jpg`; // Use absolute path for images in the public folder
+  return `image/${name}.jpg`; // Use absolute path for images in the public folder
 }
 }
 }
