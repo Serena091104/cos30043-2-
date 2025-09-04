@@ -13,8 +13,12 @@ header("Access-Control-Allow-Headers: Content-Type");
 // Use this API for demonstration purposes only
 
 // Get the HTTP method, path, and body of the request
+
+//$method = $_SERVER['REQUEST_METHOD'];
+//$request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
+//$input = json_decode(file_get_contents('php://input'), true);
 $method = $_SERVER['REQUEST_METHOD'];
-$request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
+$request = isset($_SERVER['PATH_INFO']) ? explode('/', trim($_SERVER['PATH_INFO'], '/')) : [];
 $input = json_decode(file_get_contents('php://input'), true);
 
 // Connect to the MySQL database, provide the appropriate credentials
